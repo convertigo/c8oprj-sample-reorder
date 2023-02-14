@@ -1,0 +1,111 @@
+comment: Generate a list of fictive people
+↓Read_XML [steps.ReadXMLStep-1676307670452]: 
+  dataFile: '".//data/People_10.xml"'
+  replaceStepElement: false
+↓Sort [steps.XMLSortStep-1676307670455]: 
+  output: false
+  sortXPATHDefinition: lastname
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1676307670452
+        - java.lang.String: 
+          - ↑value: ./root/People
+↓Complex [steps.XMLComplexStep-1676307670458]: 
+  nodeName: anchorContainer
+  output: false
+  ↓Iterator [steps.IteratorStep-1676307670461]: 
+    condition: start*1+nbr*1
+    sourceDefinition: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: 1676307670455
+          - java.lang.String: 
+            - ↑value: ./People
+    startIndex: start
+    ↓jSimpleSource [steps.SimpleSourceStep-1676307670464]: 
+      sourceDefinition: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+          - com.twinsoft.convertigo.beans.common.XMLVector: 
+            - java.lang.String: 
+              - ↑value: 1676307670461
+            - java.lang.String: 
+              - ↑value: ./lastname/text()
+      variableName: lastname
+    ↓jIf [steps.IfStep-1676307670467]: 
+      condition: lastname.toLowerCase().startsWith(search.toLowerCase())
+      ↓Complex [steps.XMLComplexStep-1676307670470]: 
+        nodeName: People
+        output: false
+        ↓Attribute [steps.XMLAttributeStep-1676307670473]: 
+          nodeName: type
+          nodeText: object
+        ↓Copy [steps.XMLCopyStep-1676307670476]: 
+          output: false
+          sourceDefinition: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+              - com.twinsoft.convertigo.beans.common.XMLVector: 
+                - java.lang.String: 
+                  - ↑value: 1676307670461
+                - java.lang.String: 
+                  - ↑value: ./*
+↓ComplexPeople [steps.XMLComplexStep-1676307670479]: 
+  nodeName: People
+  ↓Attribute [steps.XMLAttributeStep-1676307670482]: 
+    nodeName: type
+    nodeText: array
+  ↓Copy [steps.XMLCopyStep-1676307670485]: 
+    sourceDefinition: 
+      - xmlizable: 
+        - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+        - com.twinsoft.convertigo.beans.common.XMLVector: 
+          - java.lang.String: 
+            - ↑value: 1676307670458
+          - java.lang.String: 
+            - ↑value: ./People
+↓Count [steps.XMLCountStep-1676307670488]: 
+  nodeName: count
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1676307670452
+        - java.lang.String: 
+          - ↑value: ./root/People
+  ↓Attribute [steps.XMLAttributeStep-1676307670491]: 
+    nodeName: from
+    nodeText: XML File
+↓Count1 [steps.XMLCountStep-1676307670494]: 
+  nodeName: count
+  sourceDefinition: 
+    - xmlizable: 
+      - ↑classname: com.twinsoft.convertigo.beans.common.XMLVector
+      - com.twinsoft.convertigo.beans.common.XMLVector: 
+        - java.lang.String: 
+          - ↑value: 1676307670479
+        - java.lang.String: 
+          - ↑value: ./People
+  ↓Attribute [steps.XMLAttributeStep-1676307670497]: 
+    nodeName: from
+    nodeText: Iteration Step
+↓start [variables.RequestableVariable-1676307670500]: 
+  comment: Starting index
+  value: 0
+↓nbr [variables.RequestableVariable-1676307670503]: 
+  comment: Number of results to return
+  value: 10
+↓search [variables.RequestableVariable-1676307670506]: 
+  comment: Search by lastname filter
+  value: 
+↓Test_Case_0_5 [core.TestCase]: 
+  ↓start [variables.TestCaseVariable-1676307670517]: 
+    value: 0
+  ↓nbr [variables.TestCaseVariable-1676307670520]: 
+    value: 5

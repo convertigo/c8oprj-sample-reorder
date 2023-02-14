@@ -1,5 +1,8 @@
 ↑isRoot: true
-comment: My First Page as root page
+comment: |
+  Reorder component usage.<br/>
+  <img src="./doc/c8oprj-sample-reorder_group.gif" />
+  
 preloadPriority: high
 scriptContent: 
   - xmlizable: 
@@ -40,7 +43,7 @@ title: First page
         textValue: 
           - xmlizable: 
             - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
-            - MobileSmartSourceType: plain:Page
+            - MobileSmartSourceType: plain:Reorder Group
     ↓ButtonSet2 [ngx.components.UIDynamicElement-1588170811054]: 
       beanData: '{"ionBean":"ButtonSet","SetPosition":"plain:end"}'
       tagName: ion-buttons
@@ -60,6 +63,96 @@ title: First page
   beanData: '{"ionBean":"Content"}'
   comment: Page content
   tagName: ion-content
+  ↓ListContainer [ngx.components.UIDynamicElement-1676305496848]: 
+    beanData: '{"ionBean":"List"}'
+    tagName: ion-list
+    ↓ListHeader [ngx.components.UIDynamicElement-1676305496850]: 
+      beanData: '{"ionBean":"Listheader"}'
+      tagName: ion-list-header
+      ↓Label [ngx.components.UIDynamicElement-1676305496852]: 
+        beanData: '{"ionBean":"Label"}'
+        tagName: ion-label
+        ↓Heading [ngx.components.UIDynamicTag-1676305496854]: 
+          beanData: '{"ionBean":"Heading"}'
+          tagName: h1
+          ↓Text [ngx.components.UIText-1676305496856]: 
+            textValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                - MobileSmartSourceType: plain:People
+      ↓Button [ngx.components.UIDynamicElement-1676309144426]: 
+        beanData: '{"ionBean":"Button","IonColor":"script:this.local.isDisabled == undefined || this.local.isDisabled == true ? ''medium'' : ''success''"}'
+        tagName: ion-button
+        ↓Event [ngx.components.UIControlEvent-1676309144432]: 
+          ↓toggle_reorder [ngx.components.UICustomAction-1676309367326]: 
+            actionValue: 
+              - xmlizable: 
+                - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+                - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                  →: |
+                    '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                    		page.local.isDisabled = page.local.isDisabled != undefined ? !page.local.isDisabled : false;
+                    		resolve();
+                    '
+        ↓Icon [ngx.components.UIDynamicElement-1676309022899]: 
+          beanData: |
+            '{
+             "ionBean": "Icon",
+             "IconName": "source:{\"filter\":\"Icon\",\"project\":\"reorder\",\"input\":\"\",\"model\":{\"data\":[{\"icon\":\"''swap-vertical''\"}],\"path\":\"\",\"prefix\":\"\",\"suffix\":\"\",\"custom\":\"\",\"useCustom\":false}}",
+             "IonSize": "plain:large",
+             "IconSlot": "plain:icon-only"
+            }'
+          tagName: ion-icon
+    ↓ReorderGroup [ngx.components.UIDynamicElement-1676304948571]: 
+      beanData: '{"ionBean":"ReorderGroup","Disabled":"script:this.local.isDisabled"}'
+      tagName: ion-reorder-group
+      ↓Directive [ngx.components.UIControlDirective-1676305496858]: 
+        directiveIndexName: idx
+        directiveItemName: item
+        directiveSource: 
+          - xmlizable: 
+            - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+            - MobileSmartSourceType: source:{"filter":"Local","project":"reorder","input":"","model":{"data":[{"localObject":"local"}],"path":"?.people","prefix":"","suffix":"","custom":"","useCustom":false}}
+        ↓ListItem [ngx.components.UIDynamicElement-1676305496860]: 
+          beanData: '{"ionBean":"ListItem"}'
+          tagName: ion-item
+          ↓Label [ngx.components.UIDynamicElement-1676305496862]: 
+            beanData: '{"ionBean":"Label"}'
+            tagName: ion-label
+            ↓Text [ngx.components.UIText-1676305496864]: 
+              textValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:item.lastname
+            ↓Text2 [ngx.components.UIText-1676308914321]: 
+              textValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: 'plain: '
+            ↓Text1 [ngx.components.UIText-1676308849115]: 
+              textValue: 
+                - xmlizable: 
+                  - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+                  - MobileSmartSourceType: script:item.firstname
+          ↓Reorder [ngx.components.UIDynamicElement-1676305488703]: 
+            beanData: '{"ionBean":"Reorder","IonSlot":"plain:end"}'
+            tagName: ion-reorder
+      ↓Event [ngx.components.UIControlEvent-1676305704713]: 
+        attrName: (ionItemReorder)
+        eventName: ionItemReorder
+        ↓complete [ngx.components.UICustomAction-1676306744842]: 
+          actionValue: 
+            - xmlizable: 
+              - ↑classname: com.twinsoft.convertigo.beans.common.FormatedContent
+              - com.twinsoft.convertigo.beans.common.FormatedContent: 
+                →: |
+                  '		page.c8o.log.debug(''[MB] ''+ props.actionFunction +'': ''+ props.actionName);
+                  		page.c8o.log.debug("Before complete: " + JSON.stringify(page.local.people));
+                  		page.c8o.log.debug("moved item from index #" + event.detail.from + " to index #" + event.detail.to);
+                  		page.local.people = event.detail.complete(page.local.people);
+                  		page.c8o.log.debug("After complete: " + JSON.stringify(page.local.people));
+                  		resolve();
+                  '
 ↓Footer [ngx.components.UIDynamicElement-1491634242460]: 
   beanData: '{"ionBean":"Footer"}'
   comment: Page footer
@@ -89,3 +182,25 @@ title: First page
             - xmlizable: 
               - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
               - MobileSmartSourceType: plain:Action 2
+↓PageEvent [ngx.components.UIPageEvent-1676308645511]: 
+  ↓CallSequence [ngx.components.UIDynamicAction-1676308655039]: 
+    beanData: '{"ionBean":"CallSequenceAction","requestable":"plain:reorder.generatePeople"}'
+    ↓start [ngx.components.UIControlVariable-1676308660210]: 
+      comment: new variable
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:0
+    ↓nbr [ngx.components.UIControlVariable-1676308660212]: 
+      comment: new variable
+      varValue: 
+        - xmlizable: 
+          - ↑classname: com.twinsoft.convertigo.beans.ngx.components.MobileSmartSourceType
+          - MobileSmartSourceType: plain:8
+    ↓SetLocal [ngx.components.UIDynamicAction-1676308741722]: 
+      beanData: |
+        '{
+         "ionBean": "SetLocalAction",
+         "Property": "plain:people",
+         "Value": "script:out.People"
+        }'
