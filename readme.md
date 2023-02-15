@@ -23,13 +23,13 @@ For more technical informations : [documentation](./project.md)
      <tr><td>To contribute</td><td>
 
      ```
-     reorder=C:/Convertigo/Studio 8.1.0/workspace/reorder/.git:branch=master
+     reorder=https://github.com/convertigo/c8oprj-sample-reorder.git:branch=master
      ```
      </td></tr>
      <tr><td>To simply use</td><td>
 
      ```
-     reorder=C:/Convertigo/Studio 8.1.0/workspace/reorder//archive/master.zip
+     reorder=https://github.com/convertigo/c8oprj-sample-reorder/archive/master.zip
      ```
      </td></tr>
     </table>
